@@ -1,24 +1,13 @@
+// faz as importaçoes de bibliotecas e arquivos necessários
 import React from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import style from 'styled-components';
 import Form from './components/Form';
 import Grid from './components/Grid';
 import GblobalStyle from './styles/Global';
 import axios from 'axios';
 import { API_URL } from './api';
-
-const Container = style.div`
-  width: 100%;
-  max-width: 800px;
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-`;
-
-const Title = style.h2``;
+import { Container, Title } from './styles/AppStyle';
 
 function App() {
 
