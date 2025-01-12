@@ -33,7 +33,7 @@ function App() {
   return (
     <>
       <Container>
-        <Title>Todo List</Title>
+        <Title>Lista de Tarefas</Title>
         <Form onEdit={onEdit} setOnEdit={setOnEdit} getTasks={getTasks}/>
         <Grid tasks={tasks} setTasks={setTasks} setOnEdit={setOnEdit}/>
       </Container>
