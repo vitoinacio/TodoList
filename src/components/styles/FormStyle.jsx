@@ -46,6 +46,7 @@ export const Label = styled.label`
 `;
 
 export const Button = styled.button`
+  width: 80px;
   padding: 10px;
   cursor: pointer;
   border-radius: 5px;

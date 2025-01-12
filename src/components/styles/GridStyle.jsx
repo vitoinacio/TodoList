@@ -52,16 +52,18 @@ export const Td = styled.td`
 export const Tbody = styled.tbody``;
 
 export const EditIcon = styled(FaEdit)`
-cursor: pointer;
-color: #333;
-&:hover {
-  color: #555;
-}
+  cursor: pointer;
+  color: #333;
+  transition: 0.3s;
+  &:hover {
+    color: #555;
+  }
 `;
 
 export const TrashIcon = styled(FaTrash)`
   cursor: pointer;
   color: red;
+  transition: 0.3s;
   &:hover {
     color: darkred;
   }
