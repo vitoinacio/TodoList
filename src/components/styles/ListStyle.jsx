@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 
-// arquivo de estilo do Grid.jsx contendo todos os estilos em styled-components
+// arquivo de estilo do List.jsx contendo todos os estilos em styled-components
 
 export const Table = styled.table`
   width: 100%;
@@ -23,6 +23,15 @@ export const Thead = styled.thead``;
 export const Tr = styled.tr`
   display: flex;
   gap: 10px;
+
+  .button{
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+
+    }
+
 
   @media (max-width: 400px) {
     gap: 15px;
@@ -55,6 +64,8 @@ export const EditIcon = styled(FaEdit)`
   cursor: pointer;
   color: #333;
   transition: 0.3s;
+  font-size: 20px;
+
   &:hover {
     color: #555;
   }
@@ -64,6 +75,8 @@ export const TrashIcon = styled(FaTrash)`
   cursor: pointer;
   color: red;
   transition: 0.3s;
+  font-size: 20px;
+
   &:hover {
     color: darkred;
   }

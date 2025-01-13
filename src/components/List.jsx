@@ -3,9 +3,9 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import { API_URL } from '../api';
-import { Table, Thead, Tbody, Tr, Th, Td, EditIcon, TrashIcon } from './styles/GridStyle';
+import { Table, Thead, Tbody, Tr, Th, Td, EditIcon, TrashIcon } from './styles/ListStyle';
 
-const Grid = ({ tasks , setTasks, setOnEdit}) => {
+const List = ({ tasks , setTasks, setOnEdit}) => {
 
   // Função handleEdit que recebe uma task e seta a task no estado onEdit
   const handleEdit = (task) => {
@@ -15,7 +15,7 @@ const Grid = ({ tasks , setTasks, setOnEdit}) => {
   // Função handleDelete que recebe um id e deleta a task com o id recebido filtrando o array de tasks
   const handleDelete = async (id) => {
 
-    // Faz a requisição delete para a API passando o id da task e usando a url criada e exportada do arquivo api.js
+    // Faz a requisição delete para a API passando o id da task e usando a url criada e exportada do arquivo api.js e depois usa o metodo de array filter para filtrar as tasks e setar no estado tasks excluindo a task com o id recebido
     await axios
       .delete(`${API_URL}/${id}`)
       .then(({ data }) => {
@@ -41,10 +41,10 @@ const Grid = ({ tasks , setTasks, setOnEdit}) => {
         {tasks.map((task) => (
           <Tr key={task.id}>
             <Td width='70%'>{task.task_name}</Td>
-            <Td $alignCenter={true} width='10%'>
+            <Td className='button' $alignCenter={true} width='10%'>
               <EditIcon onClick={()=> handleEdit(task)}/>
             </Td>
-            <Td $alignCenter={true} width='10%'>
+            <Td className='button' $alignCenter={true} width='10%'>
               <TrashIcon onClick={() => handleDelete(task.id)} />
             </Td>
           </Tr>
@@ -53,7 +53,8 @@ const Grid = ({ tasks , setTasks, setOnEdit}) => {
     </Table>
   );
 };
-Grid.propTypes = {
+
+List.propTypes = {
   tasks: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -65,4 +66,4 @@ Grid.propTypes = {
   setOnEdit: PropTypes.func.isRequired,
 };
 
-export default Grid;
+export default List;

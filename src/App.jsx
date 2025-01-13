@@ -3,7 +3,7 @@ import React from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Form from './components/Form';
-import Grid from './components/Grid';
+import List from './components/List';
 import GblobalStyle from './styles/Global';
 import axios from 'axios';
 import { API_URL } from './api';
@@ -35,7 +35,7 @@ function App() {
       <Container>
         <Title>Lista de Tarefas</Title>
         <Form onEdit={onEdit} setOnEdit={setOnEdit} getTasks={getTasks}/>
-        <Grid tasks={tasks} setTasks={setTasks} setOnEdit={setOnEdit}/>
+        <List tasks={tasks} setTasks={setTasks} setOnEdit={setOnEdit}/>
       </Container>
       <ToastContainer autoClose={3000} position="bottom-left" />
       <GblobalStyle />

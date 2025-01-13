@@ -67,11 +67,89 @@ A arquitetura do projeto é baseada em componentes React, seguindo a estrutura p
    ```bash
    npm install
    ```
-3. Inicie o servidor de desenvolvimento:
+3. Utilize a API do repositório ou crie uma API com as mesmas funcionalidades, Adicionar, Deletar e Editar, como mostrado abixo:
+   ```bash
+   https://github.com/vitoinacio/api_TodoList
+   ```
+4. Inicie o servidor de desenvolvimento:
    ```bash
    npm run dev
    ```
-4. Abra o navegador e acesse `http://localhost:3000`.
+5. Abra o navegador e acesse `http://localhost:3000`.
+
+### Conexão com a API
+
+A conexão com a API é feita utilizando o Axios para realizar as requisições HTTP para o repositório [api_TodoList](https://github.com/vitoinacio/api_TodoList). A URL base da API é configurada no Axios, e todas as operações de gerenciamento de tarefas são realizadas através de endpoints da API.
+
+#### Exemplo de Uso do Axios
+
+```javascript
+import API_URL from './api';
+
+// Função para buscar todas as tarefas
+const getTasks = async () => {
+    try {
+      const res = await axios.get(API_URL);
+      setTasks(res.data);
+    } catch (error) {
+      toast.error(error);
+    }
+  }
+
+// Função para adicionar uma nova tarefa
+export const addTask = async (task) => {
+  await axios
+        .post(API_URL, {
+          task_name: task.task_name.value,
+        })
+        .then(({ data }) => {
+          toast.success(data)
+          task.task_name.focus();
+        })
+        .catch(({ data }) => toast.error(data));
+    }
+};
+
+// Função para editar uma tarefa
+export const editTask = async (taskId, updatedTask) => {
+ await axios
+        .put(`${API_URL}/${onEdit.id}`, {
+          task_name: task.task_name.value,
+        })
+        .then(({ data }) => toast.success(data))
+        .catch(({ data }) => toast.error(data));
+};
+
+// Função para remover uma tarefa
+export const deleteTask = async (taskId) => {
+  await axios
+      .delete(`${API_URL}/${id}`)
+      .then(({ data }) => {
+        const newArray = tasks.filter((task) => task.id !== id);
+
+        setTasks(newArray);
+        toast.success(data);
+      })
+      .catch(({ data }) => toast.error(data));
+};
+```
+
+Para utilizar essa API, é necessário clonar o repositório [api_TodoList](https://github.com/vitoinacio/api_TodoList) ou criar uma API que realize as mesmas funções. Siga os passos abaixo para clonar o repositório da API:
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/vitoinacio/api_TodoList.git
+   cd api_TodoList
+   ```
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
+3. Inicie o servidor da API:
+   ```bash
+   npm start
+   ```
+4. Certifique-se de que a URL base da API no frontend (`baseURL` no arquivo `api.js`) está apontando para o servidor da API que você acabou de iniciar.
 
 ### Como Contribuir
 1. Faça um fork do repositório.

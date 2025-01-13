@@ -8,29 +8,33 @@ import { Button, FormContainer, Input, InputArea, Label } from './styles/FormSty
 
 
 const Form = ({ onEdit, setOnEdit, getTasks }) => {
+  // Cria uma referência para o formulário
   const ref = React.useRef(null);
 
+  // useEffect que verifica se a tarefa está em modo de edição e seta o foco no input da tarefa e o texto do botão para salvar
   React.useEffect(() => {
     if (onEdit) {
-      document.querySelector('button[type="submit"]').innerHTML = 'Salvar'
       const task = ref.current;
+      task.task_name.focus();
+      task.button.innerHTML = 'Salvar'
 
       task.task_name.value = onEdit.task_name;
     }
   }, [onEdit]);
 
+  // Função handleSubmit que recebe um evento e previne o comportamento padrão do formulário
   const handleSubmit = async (e) => {
-    document.querySelector('button[type="submit"]').innerHTML = 'Adicionar'
     e.preventDefault();
-
+    
     const task = ref.current;
+    task.button.innerHTML = 'Adicionar'
 
     if (!task.task_name.value) {
       return toast.warning('Preencha o campo Tarefa');
     }
 
     if (onEdit) {
-      // Atualiza a tarefa e utiliza a função getTasks para atualizar a lista de tarefas usando a url criada e exportada do arquivo api.js
+      // verifica se a tarefa está em modo de edição e faz a requisição put para a API passando o id da tarefa e o nome da tarefa e usando a url criada e exportada do arquivo api.js
 
       await axios
         .put(`${API_URL}/${onEdit.id}`, {
@@ -39,11 +43,15 @@ const Form = ({ onEdit, setOnEdit, getTasks }) => {
         .then(({ data }) => toast.success(data))
         .catch(({ data }) => toast.error(data));
     } else {
+      // faz a requisição post para a API passando o nome da tarefa e usando a url criada e exportada do arquivo api.js
       await axios
         .post(API_URL, {
           task_name: task.task_name.value,
         })
-        .then(({ data }) => toast.success(data))
+        .then(({ data }) => {
+          toast.success(data)
+          task.task_name.focus();
+        })
         .catch(({ data }) => toast.error(data));
     }
 
@@ -59,7 +67,7 @@ const Form = ({ onEdit, setOnEdit, getTasks }) => {
         <Label htmlFor='task_name'>Tarefa</Label>
         <Input type='text' id='task_name' />
       </InputArea>
-      <Button type='submit'>Adicionar</Button>
+      <Button id='button' type='submit'>Adicionar</Button>
     </FormContainer>
   );
 };
