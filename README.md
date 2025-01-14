@@ -167,4 +167,4 @@ Para utilizar essa API, é necessário clonar o repositório [api_TodoList](http
    ```
 5. Abra um Pull Request no repositório original.
 
-Para mais detalhes sobre o projeto [página do projeto](https://github.com/vitoinacio/TodoList).
+Para ver o projeto em execução [página do projeto](https://todo-list-u161.vercel.app/).
