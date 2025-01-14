@@ -24,15 +24,6 @@ export const Tr = styled.tr`
   display: flex;
   gap: 10px;
 
-  .button{
-    display: flex;
-    cursor: pointer;
-    justify-content: center;
-    align-items: center;
-
-    }
-
-
   @media (max-width: 400px) {
     gap: 15px;
   }

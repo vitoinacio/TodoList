@@ -41,10 +41,10 @@ const List = ({ tasks , setTasks, setOnEdit}) => {
         {tasks.map((task) => (
           <Tr key={task.id}>
             <Td width='70%'>{task.task_name}</Td>
-            <Td className='button' $alignCenter={true} width='10%'>
+            <Td $alignCenter={true} width='10%'>
               <EditIcon onClick={()=> handleEdit(task)}/>
             </Td>
-            <Td className='button' $alignCenter={true} width='10%'>
+            <Td $alignCenter={true} width='10%'>
               <TrashIcon onClick={() => handleDelete(task.id)} />
             </Td>
           </Tr>
